@@ -34,12 +34,15 @@ public class WebMonitorController {
 			@RequestParam("coinListAsCsv") String coinListAsCsv) {
 
 		List<String> coinCodeList = Arrays.asList(coinListAsCsv.split(","));
-
+		
+		//Fetch coins from external API
 		List<Coin> coinListFromMarketByCodeList = coinMarketService.getCoinListByCodeList(coinCodeList); 
 
-		// save Coins from external API into the Vault
+		// save Coins  into the Vault
+		System.out.println("Saving data into db...");
 		coinListFromMarketByCodeList.stream().filter(coin->coin.getValue() > 0).forEach(coinVaultService::save);
-
+		System.out.println("Data Saved ok");
+		
 		// Fetch data from Db
 		Map<String, List<Double>> responseMap = new HashMap<>();
 		coinCodeList.stream().forEach(coinCode -> responseMap.put(coinCode, getCoinListByCodeFromDb(coinCode)));

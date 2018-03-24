@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @Entity
 public class Coin {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 	String code;
 	String description;

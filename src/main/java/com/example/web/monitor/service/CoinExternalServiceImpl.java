@@ -39,7 +39,7 @@ public class CoinExternalServiceImpl implements CoinExternalService {
 	@Override
 	public List<Coin> getCoinListByCodeList(List<String> coinListToCompute) {
 
-		boolean isDummy = true;
+		boolean isDummy = false;
 
 		System.out.println("Request params: " + coinListToCompute);
 		String body;
